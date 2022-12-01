@@ -1,0 +1,53 @@
+Client.on('voiceStateUpdate', async (oldState, newState) => {
+
+        const user = await Client.users.fetch(newState.id);
+        let log = Client.channels.cache.get(`1029161964649316352`);
+        let entrada = newState.channel;
+        let saida = oldState.channel;
+        
+        if (!oldState.channel && newState.channel) {
+        let embedsaida = new Discord.EmbedBuilder()
+        
+          .setTitle('🔊  Entrou no canal de voz  🔊')
+          .setDescription(`**Membro:** \n> ${user} \n**ID do membro:** \n> ${user.id} \n\n**Canal de voz:** \n> ${entrada} \n**ID do canal:** \n> ${entrada.id}`)
+          .setColor('Green')
+          .setThumbnail("https://cdn.discordapp.com/attachments/1029187830737547275/1036772568348242090/Composicao_1_1.gif")
+          .setFooter({text: `Recreation RP`})
+          .setTimestamp()
+        
+            log.send({ embeds: [embedsaida]})
+        
+        } else {
+             if (!newState.channel)  {
+
+        let embedentrada = new Discord.EmbedBuilder()
+        .setTitle('🔇  Saiu do canal de voz  🔇')
+          .setDescription(`**Membro:** \n> ${user} \n**ID do membro:** \n> ${user.id} \n\n**Canal de voz:** \n> ${saida} \n**ID do canal:** \n> ${saida.id}`)
+          .setColor('Red')
+          .setThumbnail("https://cdn.discordapp.com/attachments/1029187830737547275/1036772568348242090/Composicao_1_1.gif")
+          .setFooter({text: `Recreation RP`})
+          .setTimestamp()
+          
+            log.send({ embeds: [embedentrada]})
+             } 
+             
+             else {
+
+                    if (oldState.channel && newState.channel && oldState.channel !== newState.channel)  {
+       
+               let embedmudou = new Discord.EmbedBuilder()
+               .setTitle('🔊  Mudou de canal de voz  🔊')
+                 .setDescription(`**Membro:** \n> ${user} \n**ID do membro:** \n> ${user.id} \n\n**Canal de voz antigo:** \n> ${saida} \n**ID do canal:** \n> ${saida.id} \n\n**Canal de voz novo:** \n> ${entrada} \n**ID do canal:** \n> ${entrada.id}`)
+                 .setColor('Gold')
+                 .setThumbnail("https://cdn.discordapp.com/attachments/1029187830737547275/1036772568348242090/Composicao_1_1.gif")
+                 .setFooter({text: `Recreation RP`})
+                 .setTimestamp()
+                 
+                   log.send({ embeds: [embedmudou]})
+                    } 
+               
+             }
+        } 
+        
+    
+        })
