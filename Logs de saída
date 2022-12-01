@@ -1,0 +1,20 @@
+client.on('guildMemberRemove', async member => {
+
+  let channel = client.channels.cache.get(""); // Id do canal de logs
+  let guild = client.guilds.cache.get(""); // Id do servidor
+
+  let data = new Date().toLocaleString()
+
+  let saida = new Discord.EmbedBuilder()
+    .setColor("Green")
+    .setTitle("Um membro saiu do servidor! 😭")
+    .setThumbnail("") // Caso queira colocar uma foto coloque o link dela aki, caso não queira apague essa linha.
+    .setDescription(`
+           
+    **O usuario ${member.user} saiu do servidor!**
+    **Data:** \`${data}\``)
+    .setTimestamp()
+    .setFooter({ text: `${guild.name}`, iconURL: guild.iconURL({ dynamic: true }) })
+
+  await channel.send({ embeds: [saida] })
+})
