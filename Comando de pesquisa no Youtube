@@ -1,0 +1,24 @@
+const Discord = module.require("discord.js");
+
+module.exports = {
+  name: "youtube",
+  description: "Obtenha resultados de pesquisa do youtube",
+  
+    run: async (client, message, args) => {
+        const pesquisa = args.join("_");
+        const msg = args.join(" ");
+        if (!msg) {
+            return message.channel.send("Você precisa inserir algum texto para pesquisar um vídeo");
+        }
+        const link = `https://m.youtube.com/results?sp=mAEA&search_query=${pesquisa}`;
+        const embed = new Discord.EmbedBuilder()
+            .setTitle(`Pesquisa no youtube`)
+            .addFields(
+                { name: `Você pesquisou por:`, value: `${msg}`},
+                { name: `Resultados:`, value: `[Aqui está o que eu encontrei](${link})` },
+            )
+            .setColor("Random");
+
+    message.channel.send({ embeds: [embed] });
+  },
+};
