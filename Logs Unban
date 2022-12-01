@@ -1,0 +1,14 @@
+Client.on("guildBanRemove", (member) => {
+    let canal_logs2 = "1029161109497851974"; // Coloque o ID do canal de texto
+    if (!canal_logs2) return;
+  
+    let embed = new Discord.EmbedBuilder()
+    .setColor("Green")
+    .setThumbnail("https://cdn.discordapp.com/attachments/1029187830737547275/1036772568348242090/Composicao_1_1.gif")
+    .setTitle(`<:Role_Expert:1036130481604919297> Membro Desbanido <:Role_Expert:1036130481604919297>`)
+    .setFooter({text: `<:recreation:1037498106662625361> Recreation RP`})
+    .setTimestamp(new Date())
+    .setDescription(`**Membro:** \n> ${member.user} \n**ID do membro:** \n> ${member.user.id}`);
+  
+    member.guild.channels.cache.get(canal_logs2).send({ embeds: [embed] }) // Caso queira que o usuário não seja mencionado, retire a parte do "content". 
+  })
