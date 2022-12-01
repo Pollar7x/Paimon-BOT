@@ -1,0 +1,12 @@
+Client.on("messageUpdate", (message, oldMessage, newMessage) => {
+    const channel = Client.channels.cache.get("1029161610117394514");
+    const embed = new Discord.EmbedBuilder()
+        .setTitle(`<:utility:1038937334856564806> LOG - Mensagem Editada <:utility:1038937334856564806>`)
+        .setColor('Black')
+        .setFooter({text: `Recreation RP`})
+        .setThumbnail("https://cdn.discordapp.com/attachments/1029187830737547275/1036772568348242090/Composicao_1_1.gif")
+        .setTimestamp(new Date())
+
+        .setDescription(`**Autor da mensagem** \n> **Usuário:** ${message.author} \n> **ID:** ${message.author.id} \n\n**Canal:** \n> ${message.channel} \n\n**Mensagem antiga:** \n> \`\`\`${message.content}\`\`\` \n\n**Mensagem nova:** \n> \`\`\`${oldMessage.content}\`\`\``)
+        channel.send({ embeds: [embed] });
+})
