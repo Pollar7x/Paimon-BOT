@@ -1,0 +1,20 @@
+client.on('guildMemberAdd', async member => {
+
+  let channel = client.channels.cache.get(""); // ID do canal de logs
+  let guild = client.guilds.cache.get(""); // Id do servidor
+
+  let data = new Date().toLocaleString()
+
+  let entrada = new Discord.EmbedBuilder()
+    .setColor("Green")
+    .setThumbnail("") // Caso queira colocar uma foto coloque o link dela aki, caso não queira apague essa linha.
+    .setTitle("Novo membro no servidor! 🎉")
+    .setDescription(`
+             
+             **O usuario ${member.user} entrou no servidor!**
+             **Data:** \`${data}\``)
+    .setTimestamp()
+    .setFooter({ text: `${guild.name}`, iconURL: guild.iconURL({ dynamic: true }) })
+
+  await channel.send({ embeds: [entrada] })
+})
